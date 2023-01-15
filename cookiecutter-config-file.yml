@@ -1,0 +1,15 @@
+# This project was generated using a Cookiecutter template:
+#       https://github.com/notsatan/go-template
+
+cookiecutter_inputs:
+  project_name: "go-wallheven"
+  go_module_path: "github.com/coderj001/go-wallheven"
+  license_owner: "example"
+  base_branch: "main"
+  contact_email: "rajughorai41410@gmail.com"
+  project_description: "GoWallheven is a Go application created using https://github.com/notsatan/go-template"
+  github_specific_features: "y"
+  use_codecov: "y"
+  use_precommit: "n"
+  go_version: "1.18"
+  license: "MIT"

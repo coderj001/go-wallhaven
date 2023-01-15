@@ -1,0 +1,56 @@
+# Git
+.git
+.gitignore
+.github
+
+# Docker
+.dockerignore
+
+# IDE
+.idea
+.vscode
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.py[cod]
+*$py.class
+.pytest_cache/
+..mypy_cache/
+
+# C extensions
+*.so
+
+# Virtual environments
+venv
+.venv
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Temporary directories in the project
+bin
+tmp
+
+./docker/
+./coverage/
+
+build-script.sh
+codecov.yml
+.editorconfig
+.golangci.yml
+.goreleaser.yml
+.pre-commit-config.yaml
+cookiecutter-config-file.yml
+
+Makefile
+LICENSE
+README.md
+CONTRIBUTING.md
+SECURITY.md
+CODE_OF_CONDUCT.md
