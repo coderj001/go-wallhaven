@@ -23,7 +23,7 @@ func init() {
 	BASE_CONFIG.APIKEY = os.Getenv("API_KEY")
 }
 
-func (c Config) get_base_url() string {
+func (c Config) getBaseUrl() string {
 	var url string
 	if c.APIKEY != "" {
 		url = c.APIURL + "?apikey=" + c.APIKEY
@@ -34,6 +34,6 @@ func (c Config) get_base_url() string {
 }
 
 func (c Config) GET_URL(query string) string {
-	return c.get_base_url() + "&" + query
+	return c.getBaseUrl() + "&" + query
 
 }
