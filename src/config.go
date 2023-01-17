@@ -12,18 +12,18 @@ type Config struct {
 	APIKEY string
 }
 
-var config Config
+var BASE_CONFIG Config
 
 func init() {
 	err := godotenv.Load()
 	if err != nil {
 		fmt.Println("Error loading .env file")
 	}
-	config.APIURL = "https://wallhaven.cc/api/v1/search"
-	config.APIKEY = os.Getenv("API_KEY")
+	BASE_CONFIG.APIURL = "https://wallhaven.cc/api/v1/search"
+	BASE_CONFIG.APIKEY = os.Getenv("API_KEY")
 }
 
-func (c Config) get_url() string {
+func (c Config) get_base_url() string {
 	var url string
 	if c.APIKEY != "" {
 		url = c.APIURL + "?apikey=" + c.APIKEY
@@ -31,4 +31,9 @@ func (c Config) get_url() string {
 		url = c.APIURL + "?"
 	}
 	return url
+}
+
+func (c Config) GET_URL(query string) string {
+	return c.get_base_url() + "&" + query
+
 }
