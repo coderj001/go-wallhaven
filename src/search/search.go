@@ -86,4 +86,7 @@ func (p Param) String() string {
 	return url
 }
 
-// func Search(p Param) (*SearchList, error) {}
+// func Search(p Param) (*SearchList, error) { }
+func Search(p Param) {
+	fmt.Println(p.String())
+}
