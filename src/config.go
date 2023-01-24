@@ -12,6 +12,7 @@ type Config struct {
 	APIKEY string
 }
 
+// Base Config
 var BASE_CONFIG Config
 
 // Purity tags

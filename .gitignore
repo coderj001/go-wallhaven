@@ -15,3 +15,5 @@ coverage/**
 # Ignore config files from project root, keeping sample config files
 /configs**
 !/configs.**.sample
+
+.env
