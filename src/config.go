@@ -55,7 +55,7 @@ func (c Config) getAPIKey() string {
 	return url
 }
 
-func (c Config) GET_URL(query string) string {
+func (c Config) GetURL(query string) string {
 	return c.getAPIKey() + "&" + query
 
 }

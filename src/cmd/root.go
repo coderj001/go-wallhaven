@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/coderj001/go-wallheven/src/app"
+
 	"github.com/spf13/cobra"
 )
 
@@ -24,6 +26,8 @@ var rootCmd = &cobra.Command{
 		// fmt.Printf("Categories: %s\n", categories)
 		// fmt.Printf("Purity: %s\n", purity)
 		// fmt.Printf("Sorting: %s\n", sorting)
+		url, _ := app.GetFullURL(page, categories, purity, sorting)
+		fmt.Println(url)
 	},
 }
 

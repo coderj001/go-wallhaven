@@ -1,4 +1,4 @@
-package search
+package app
 
 import (
 	"fmt"
@@ -90,10 +90,10 @@ func (p Param) String() string {
 }
 
 func (p Param) getFullURL() string {
-	return src.BASE_CONFIG.GET_URL(p.String())
+	return src.BASE_CONFIG.GetURL(p.String())
 }
 
-func GET_FULL_URL(page int, categories string, purity string, sorting string) (string, error) {
+func GetFullURL(page int, categories string, purity string, sorting string) (string, error) {
 	params := Param{
 		Page:        page,
 		CTage:       src.CTAGS[categories],
