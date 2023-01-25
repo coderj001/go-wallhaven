@@ -6,6 +6,10 @@ import (
 	"github.com/coderj001/go-wallheven/src"
 )
 
+type error interface {
+	Error() string
+}
+
 type MetaStruct struct {
 	CurrentPage int `json:"current_page"`
 	LastPage    int `json:"last_page"`
@@ -52,8 +56,8 @@ type Resolution struct {
 
 type Param struct {
 	Page        int
-	Categories  string
-	Tag         string
+	CTage       string
+	PTage       string
 	Resolutions []Resolution
 }
 
@@ -78,15 +82,23 @@ func (p Param) String() string {
 		paramStr = rsStr
 	}
 
-	paramStr = fmt.Sprintf("%s&q=%s", paramStr, p.Tag)
-	paramStr = fmt.Sprintf("%s&q=%d", paramStr, p.Page)
+	paramStr = fmt.Sprintf("%s&categories=%s", paramStr, p.CTage)
+	paramStr = fmt.Sprintf("%s&purity=%s", paramStr, p.PTage)
+	paramStr = fmt.Sprintf("%s&page=%d", paramStr, p.Page)
 
-	url := src.BASE_CONFIG.GET_URL(paramStr)
-
-	return url
+	return paramStr
 }
 
-// func Search(p Param) (*SearchList, error) { }
-func Search(p Param) {
-	fmt.Println(p.String())
+func (p Param) getFullURL() string {
+	return src.BASE_CONFIG.GET_URL(p.String())
+}
+
+func GET_FULL_URL(page int, categories string, purity string, sorting string) (string, error) {
+	params := Param{
+		Page:        page,
+		CTage:       src.CTAGS[categories],
+		PTage:       src.PTAGS[purity],
+		Resolutions: []Resolution{},
+	}
+	return params.getFullURL(), nil
 }
