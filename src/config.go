@@ -36,6 +36,16 @@ var CTAGS = map[string]string{
 	"gp":      "101",
 }
 
+var SORTING = map[string]string{
+	"relevance":  "relevance",
+	"random":     "random",
+	"date_added": "date_added",
+	"favorites":  "favorites",
+	"views":      "views",
+	"toplist":    "toplist",
+	"hot":        "hot",
+}
+
 func init() {
 	err := godotenv.Load()
 	if err != nil {
@@ -56,6 +66,6 @@ func (c Config) getAPIKey() string {
 }
 
 func (c Config) GetURL(query string) string {
-	return c.getAPIKey() + "&" + query
+	return c.getAPIKey() + query
 
 }

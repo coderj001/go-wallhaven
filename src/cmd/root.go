@@ -9,10 +9,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var page int
-var categories string
-var purity string
-var sorting string
+var (
+	page       int
+	query      string
+	categories string
+	purity     string
+	sorting    string
+	colors     string
+)
 
 // var resolutions string
 
@@ -22,11 +26,7 @@ var rootCmd = &cobra.Command{
 	Short:   "go-wallhaven - A command line tool to easily download wallpapers from wallhaven.cc",
 	Long:    `go-wallhaven: A seamless solution for downloading and managing wallpapers from wallhaven.cc right from your command line`,
 	Run: func(cmd *cobra.Command, args []string) {
-		// fmt.Printf("Page: %d\n", page)
-		// fmt.Printf("Categories: %s\n", categories)
-		// fmt.Printf("Purity: %s\n", purity)
-		// fmt.Printf("Sorting: %s\n", sorting)
-		url, _ := app.GetFullURL(page, categories, purity, sorting)
+		url, _ := app.GetFullURL(page, categories, purity, sorting, colors, query)
 		fmt.Println(url)
 	},
 }
@@ -45,7 +45,7 @@ func GetRoot() *cobra.Command {
 
 func init() {
 	GetRoot().Flags().IntVarP(&page, "page", "n", 1, "Total Numbers Of Pages")
-	GetRoot().Flags().StringVarP(&categories, "categories", "c", "all", `
+	GetRoot().Flags().StringVarP(&categories, "categories", "t", "all", `
 			Categories Filter:
 			all     - Every wallpaper.
 			general - For 'general' wallpapers only.
@@ -64,7 +64,7 @@ func init() {
 			sn      - For 'Sketchy' and 'NSFW'
 			all     - For 'SFW', 'Sketchy' and 'NSFW'
 	`)
-	GetRoot().Flags().StringVarP(&sorting, "sorting", "s", "", `
+	GetRoot().Flags().StringVarP(&sorting, "sorting", "s", "relevance", `
 		Sorting Filter:
 		relevance    - For sorting the results based on relevance to the search query
 		random       - For displaying random wallpapers
@@ -75,4 +75,6 @@ func init() {
 		hot          - For sorting the results based on hotness
 
 	`)
+	GetRoot().Flags().StringVarP(&colors, "colors", "c", "", `Select Color Hex Code eg. 663399`)
+	GetRoot().Flags().StringVarP(&query, "query", "q", "", `Search Image For Query eg. Dark Knight`)
 }

@@ -2,6 +2,7 @@ package app
 
 import (
 	"fmt"
+	"net/url"
 
 	"github.com/coderj001/go-wallheven/src"
 )
@@ -56,8 +57,11 @@ type Resolution struct {
 
 type Param struct {
 	Page        int
+	Query       string
 	CTage       string
 	PTage       string
+	Sorting     string
+	Color       string
 	Resolutions []Resolution
 }
 
@@ -82,9 +86,24 @@ func (p Param) String() string {
 		paramStr = rsStr
 	}
 
-	paramStr = fmt.Sprintf("%s&categories=%s", paramStr, p.CTage)
-	paramStr = fmt.Sprintf("%s&purity=%s", paramStr, p.PTage)
-	paramStr = fmt.Sprintf("%s&page=%d", paramStr, p.Page)
+	if p.Query != "" {
+		paramStr = fmt.Sprintf("%s&q=%s", paramStr, p.Query)
+	}
+	if p.Page != 0 {
+		paramStr = fmt.Sprintf("%s&page=%d", paramStr, p.Page)
+	}
+	if p.CTage != "" {
+		paramStr = fmt.Sprintf("%s&categories=%s", paramStr, p.CTage)
+	}
+	if p.PTage != "" {
+		paramStr = fmt.Sprintf("%s&purity=%s", paramStr, p.PTage)
+	}
+	if p.Sorting != "" {
+		paramStr = fmt.Sprintf("%s&sorting=%s", paramStr, p.Sorting)
+	}
+	if p.Color != "" {
+		paramStr = fmt.Sprintf("%s&colors=%s", paramStr, p.Color)
+	}
 
 	return paramStr
 }
@@ -93,11 +112,14 @@ func (p Param) getFullURL() string {
 	return src.BASE_CONFIG.GetURL(p.String())
 }
 
-func GetFullURL(page int, categories string, purity string, sorting string) (string, error) {
+func GetFullURL(page int, categories string, purity string, sorting string, color string, query string) (string, error) {
 	params := Param{
 		Page:        page,
 		CTage:       src.CTAGS[categories],
 		PTage:       src.PTAGS[purity],
+		Sorting:     src.SORTING[sorting],
+		Color:       color,
+		Query:       url.QueryEscape(query),
 		Resolutions: []Resolution{},
 	}
 	return params.getFullURL(), nil
