@@ -28,6 +28,7 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		url, _ := app.GetFullURL(page, categories, purity, sorting, colors, query)
 		fmt.Println(url)
+		fmt.Println(app.FetchAPI(url))
 	},
 }
 

@@ -11,45 +11,6 @@ type error interface {
 	Error() string
 }
 
-type MetaStruct struct {
-	CurrentPage int `json:"current_page"`
-	LastPage    int `json:"last_page"`
-	PerPage     int `json:"per_page"`
-	Total       int `json:"total"`
-}
-
-type ThumbsStruct struct {
-	Large    string `json:"large"`
-	Original string `json:"original"`
-	Small    string `json:"small"`
-}
-
-type ImageInfo struct {
-	Id         string  `json:"id"`
-	Url        string  `json:"url"`
-	ShortUrl   string  `json:"short_url"`
-	Views      int     `json:"views"`
-	Favorites  int     `json:"favorites"`
-	Source     string  `json:"source"`
-	Purity     string  `json:"purity"`
-	Category   string  `json:"category"`
-	DimensionX int     `json:"dimension_x"`
-	DimensionY int     `json:"dimension_y"`
-	Resolution string  `json:"resolution"`
-	Ratio      float64 `json:"ratio"`
-	FileSize   int64   `json:"file_size"`
-	FileType   string  `json:"file_type"`
-	CreatedAt  string  `json:"created_at"`
-	Colors     []string
-	Path       string       `json:"path"`
-	Thumbs     ThumbsStruct `json:"thumbs"`
-}
-
-type SearchList struct {
-	Data []ImageInfo
-	Meta MetaStruct
-}
-
 type Resolution struct {
 	Width  int
 	Height int
