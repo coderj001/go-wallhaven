@@ -16,9 +16,8 @@ var (
 	purity     string
 	sorting    string
 	colors     string
+	dir        string
 )
-
-// var resolutions string
 
 var rootCmd = &cobra.Command{
 	Use:     "go-wallhaven",
@@ -28,7 +27,7 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		url, _ := app.GetFullURL(page, categories, purity, sorting, colors, query)
 		fmt.Println(url)
-		fmt.Println(app.FetchAPI(url))
+		// fmt.Println(app.FetchAPI(url))
 	},
 }
 
@@ -78,4 +77,5 @@ func init() {
 	`)
 	GetRoot().Flags().StringVarP(&colors, "colors", "c", "", `Select Color Hex Code eg. 663399`)
 	GetRoot().Flags().StringVarP(&query, "query", "q", "", `Search Image For Query eg. Dark Knight`)
+	GetRoot().Flags().StringVarP(&dir, "dir", "d", "", `Path to the directory`)
 }

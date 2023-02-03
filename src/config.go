@@ -10,6 +10,7 @@ import (
 type Config struct {
 	APIURL string
 	APIKEY string
+	DIR    string
 }
 
 // Base Config
@@ -92,6 +93,7 @@ func init() {
 	}
 	BASE_CONFIG.APIURL = "https://wallhaven.cc/api/v1/search"
 	BASE_CONFIG.APIKEY = os.Getenv("API_KEY")
+	BASE_CONFIG.DIR = os.Getenv("DIR")
 }
 
 func (c Config) getAPIKey() string {
