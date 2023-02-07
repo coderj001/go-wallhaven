@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/coderj001/go-wallheven/src/app"
-
 	"github.com/spf13/cobra"
 )
 
@@ -26,8 +25,8 @@ var rootCmd = &cobra.Command{
 	Long:    `go-wallhaven: A seamless solution for downloading and managing wallpapers from wallhaven.cc right from your command line`,
 	Run: func(cmd *cobra.Command, args []string) {
 		url, _ := app.GetFullURL(page, categories, purity, sorting, colors, query)
-		fmt.Println(url)
-		// fmt.Println(app.FetchAPI(url))
+		searchList, _ := app.FetchAPI(url)
+		app.Downloader(&searchList)
 	},
 }
 
