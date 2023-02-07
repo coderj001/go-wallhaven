@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/coderj001/go-wallheven/src/app"
 	"github.com/spf13/cobra"
+
+	"github.com/coderj001/go-wallheven/src/app"
 )
 
 var (

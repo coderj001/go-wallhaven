@@ -73,7 +73,7 @@ func (p Param) getFullURL() string {
 	return src.BASE_CONFIG.GetURL(p.String())
 }
 
-func GetFullURL(page int, categories string, purity string, sorting string, color string, query string) (string, error) {
+func GetFullURL(page int, categories, purity, sorting, color, query string) (string, error) {
 	params := Param{
 		Page:        page,
 		CTage:       src.CTAGS[categories],

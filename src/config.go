@@ -3,16 +3,14 @@ package src
 import (
 	"fmt"
 	"os"
-	"strconv"
 
 	"github.com/joho/godotenv"
 )
 
 type Config struct {
-	APIURL        string
-	APIKEY        string
-	DIR           string
-	NUMGOROUTINES int
+	APIURL string
+	APIKEY string
+	DIR    string
 }
 
 // Base Config
@@ -99,12 +97,6 @@ func init() {
 		BASE_CONFIG.DIR = "./tmp"
 	} else {
 		BASE_CONFIG.DIR = os.Getenv("DIR")
-
-	}
-	if os.Getenv("NUMGOROUTINES") == "" {
-		BASE_CONFIG.NUMGOROUTINES = 5
-	} else {
-		BASE_CONFIG.NUMGOROUTINES, _ = strconv.Atoi(os.Getenv("NUMGOROUTINES"))
 	}
 }
 
@@ -120,5 +112,4 @@ func (c Config) getAPIKey() string {
 
 func (c Config) GetURL(query string) string {
 	return c.getAPIKey() + query
-
 }
