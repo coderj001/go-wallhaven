@@ -3,14 +3,17 @@ package src
 import (
 	"fmt"
 	"os"
+	"path/filepath"
+	"strconv"
 
 	"github.com/joho/godotenv"
 )
 
 type Config struct {
-	APIURL string
-	APIKEY string
-	DIR    string
+	APIURL        string
+	APIKEY        string
+	DIR           string
+	NUMGOROUTINES int
 }
 
 // Base Config
@@ -93,7 +96,17 @@ func init() {
 	}
 	BASE_CONFIG.APIURL = "https://wallhaven.cc/api/v1/search"
 	BASE_CONFIG.APIKEY = os.Getenv("API_KEY")
-	BASE_CONFIG.DIR = os.Getenv("DIR")
+	if os.Getenv("DIR") == "" {
+		BASE_CONFIG.DIR = filepath.Dir("./tmp")
+	} else {
+		BASE_CONFIG.DIR = filepath.Dir(os.Getenv("DIR"))
+
+	}
+	if os.Getenv("NUMGOROUTINES") == "" {
+		BASE_CONFIG.NUMGOROUTINES = 5
+	} else {
+		BASE_CONFIG.NUMGOROUTINES, _ = strconv.Atoi(os.Getenv("NUMGOROUTINES"))
+	}
 }
 
 func (c Config) getAPIKey() string {
