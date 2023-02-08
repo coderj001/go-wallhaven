@@ -1,3 +1,6 @@
+//nolint:tagliatelle,stylecheck
+//This line is ignoring lint checks because it is necessary for my use case.
+
 package src
 
 import (
