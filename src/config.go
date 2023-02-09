@@ -1,10 +1,15 @@
+//nolint:tagliatelle,stylecheck
+// This line is ignoring lint checks because it is necessary for my use case.
+
 package src
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/joho/godotenv"
+	"github.com/spf13/viper"
 )
 
 type Config struct {
@@ -87,16 +92,31 @@ type SearchList struct {
 }
 
 func init() {
-	err := godotenv.Load()
-	if err != nil {
-		fmt.Println("Error loading .env file")
+	var (
+		apikey string
+		dir    string
+	)
+	if err := godotenv.Load(); err == nil {
+		log.Println("Using config file: .env")
+		apikey = os.Getenv("API_KEY")
+		dir = os.Getenv("DIR")
+	} else {
+		viper.SetConfigFile(fmt.Sprintf("%s/.go-wallhaven", os.Getenv("HOME")))
+		viper.SetConfigType("json")
+		if err := viper.ReadInConfig(); err != nil {
+			log.Fatalf("Error reading config file, %s", err)
+			os.Exit(1)
+		}
+		apikey = viper.GetString("API_KEY")
+		dir = viper.GetString("DIR")
 	}
+
 	BASE_CONFIG.APIURL = "https://wallhaven.cc/api/v1/search"
-	BASE_CONFIG.APIKEY = os.Getenv("API_KEY")
-	if os.Getenv("DIR") == "" {
+	BASE_CONFIG.APIKEY = apikey
+	if dir == "" {
 		BASE_CONFIG.DIR = "./tmp"
 	} else {
-		BASE_CONFIG.DIR = os.Getenv("DIR")
+		BASE_CONFIG.DIR = dir
 	}
 }
 

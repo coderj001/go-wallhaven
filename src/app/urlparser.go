@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/coderj001/go-wallheven/src"
+	"github.com/coderj001/go-wallhaven/src"
 )
 
 type error interface {
@@ -39,7 +39,7 @@ func Resolutions(rs []Resolution) string {
 	return paramStr
 }
 
-func (p Param) String() string {
+func (p *Param) String() string {
 	paramStr := ""
 	rsStr := Resolutions(p.Resolutions)
 
@@ -69,11 +69,15 @@ func (p Param) String() string {
 	return paramStr
 }
 
-func (p Param) getFullURL() string {
+func (p *Param) getFullURL() string {
 	return src.BASE_CONFIG.GetURL(p.String())
 }
 
-func GetFullURL(page int, categories, purity, sorting, color, query string) (string, error) {
+func GetFullURL(
+	page int,
+	categories, purity, sorting, color, query string,
+) string {
+
 	params := Param{
 		Page:        page,
 		CTage:       src.CTAGS[categories],
@@ -83,5 +87,5 @@ func GetFullURL(page int, categories, purity, sorting, color, query string) (str
 		Query:       url.QueryEscape(query),
 		Resolutions: []Resolution{},
 	}
-	return params.getFullURL(), nil
+	return params.getFullURL()
 }

@@ -24,7 +24,7 @@ ENV GO111MODULE=on \
     GOARCH=amd64
 
 # Create a build directory if one does not exist, and use it as the work directory
-WORKDIR "/src/__go-wallheven__"
+WORKDIR "/src/__go-wallhaven__"
 
 # Selectively copy the requirements into the image - using `*go.sum` prevents failure
 # if the file does not exist!
@@ -37,7 +37,7 @@ RUN go mod download
 COPY . .
 
 # Generate a binary -- custom name to avoid collisions with existing files/directories
-RUN go build -v -o "../__go-wallheven_build_output__"
+RUN go build -v -o "../__go-wallhaven_build_output__"
 
 
 # Second stage - `scratch` for production builds, `golang:1.18` for debug builds
@@ -46,8 +46,8 @@ FROM ${final_image}
 WORKDIR "/builds"
 
 # Copy generated binary from previous image to this one - rename for readability
-COPY --from=builder "/src/__go-wallheven_build_output__" \
-    "./go-wallheven"
+COPY --from=builder "/src/__go-wallhaven_build_output__" \
+    "./go-wallhaven"
 
 # Set environment variables to distuinguish between build modes
 ARG build_mode=production
@@ -57,4 +57,4 @@ ENV ${build_mode}_mode=${build_mode}
 
 
 # Run the binary
-CMD ["./go-wallheven"]
+CMD ["./go-wallhaven"]
