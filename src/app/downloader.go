@@ -14,13 +14,17 @@ import (
 	"github.com/coderj001/go-wallheven/src"
 )
 
-func Downloader(searchList *src.SearchList) {
+func Downloader(searchList *src.SearchList, dir string) {
 	var wg sync.WaitGroup
 	wg.Add(len(searchList.Data))
 	completed := make(chan bool)
 
+	if dir == "" {
+		dir = src.BASE_CONFIG.DIR
+	}
+
 	for i := 0; i < len(searchList.Data); i++ {
-		go downloadImage(&searchList.Data[i], &wg, completed)
+		go downloadImage(&searchList.Data[i], dir, &wg, completed)
 	}
 
 	// Code for spinner - it takes
@@ -55,9 +59,8 @@ func Downloader(searchList *src.SearchList) {
 	close(completed)
 }
 
-func downloadImage(imgInfo *src.ImageInfo, wg *sync.WaitGroup, completed chan bool) {
+func downloadImage(imgInfo *src.ImageInfo, dir string, wg *sync.WaitGroup, completed chan bool) {
 	defer wg.Done()
-	dir := src.BASE_CONFIG.DIR
 
 	resp, err := http.Get(imgInfo.Path)
 	if err != nil {

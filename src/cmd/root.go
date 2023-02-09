@@ -19,8 +19,6 @@ var (
 	dir        string
 )
 
-var cfgFile string
-
 var rootCmd = &cobra.Command{
 	Use:     "go-wallhaven",
 	Version: "0.0.1",
@@ -29,7 +27,7 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		url := app.GetFullURL(page, categories, purity, sorting, colors, query)
 		searchList, _ := app.FetchAPI(url)
-		app.Downloader(&searchList)
+		app.Downloader(&searchList, dir)
 	},
 }
 
