@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/spf13/cobra"
-
 	"github.com/coderj001/go-wallheven/src/app"
+	"github.com/spf13/cobra"
 )
 
 var (
@@ -19,6 +18,8 @@ var (
 	dir        string
 )
 
+var cfgFile string
+
 var rootCmd = &cobra.Command{
 	Use:     "go-wallhaven",
 	Version: "0.0.1",
@@ -26,8 +27,9 @@ var rootCmd = &cobra.Command{
 	Long:    `go-wallhaven: A seamless solution for downloading and managing wallpapers from wallhaven.cc right from your command line`,
 	Run: func(cmd *cobra.Command, args []string) {
 		url := app.GetFullURL(page, categories, purity, sorting, colors, query)
-		searchList, _ := app.FetchAPI(url)
-		app.Downloader(&searchList)
+		fmt.Println(url)
+		// searchList, _ := app.FetchAPI(url)
+		// app.Downloader(&searchList)
 	},
 }
 
@@ -59,28 +61,28 @@ func init() {
 		"t",
 		"all",
 		`
-			Categories Filter:
-			all     - Every wallpaper.
-			general - For 'general' wallpapers only.
-			anime   - For 'Anime' Wallpapers only.
-			people  - For 'people' wallpapers only.
-			ga      - For 'General' and 'Anime' wallpapers only.
-			gp      - For 'General' and 'People' wallpapers only.
+		Categories Filter:
+		all     - Every wallpaper.
+		general - For 'general' wallpapers only.
+		anime   - For 'Anime' Wallpapers only.
+		people  - For 'people' wallpapers only.
+		ga      - For 'General' and 'Anime' wallpapers only.
+		gp      - For 'General' and 'People' wallpapers only.
 	`)
 	GetRoot().Flags().StringVarP(
 		&purity,
 		"purity",
 		"p",
-		"all",
+		"sfw",
 		`
-			Purity Filter:
-			sfw     - For 'Safe For Work'
-			sketchy - For 'Sketchy'
-			nsfw    - For 'Not Safe For Work'
-			ws      - For 'SFW' and 'Sketchy'
-			wn      - For 'SFW' and 'NSFW'
-			sn      - For 'Sketchy' and 'NSFW'
-			all     - For 'SFW', 'Sketchy' and 'NSFW'
+		Purity Filter:
+		sfw     - For 'Safe For Work'
+		sketchy - For 'Sketchy'
+		nsfw    - For 'Not Safe For Work'
+		ws      - For 'SFW' and 'Sketchy'
+		wn      - For 'SFW' and 'NSFW'
+		sn      - For 'Sketchy' and 'NSFW'
+		all     - For 'SFW', 'Sketchy' and 'NSFW'
 	`)
 	GetRoot().Flags().StringVarP(
 		&sorting,
