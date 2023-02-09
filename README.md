@@ -13,6 +13,16 @@
 
 </div>
 
+## Installation (Binary)
+Download binary from [releases](https://github.com/coderj001/go-wallhaven/releases) or build with `go build .`.
+If you have api key, it free and will suggest to create a free account, create a file `.go-wallhaven` at home dir
+```json
+{
+  "API_KEY" : "<API_KEY>",
+  "DIR" : "<DIRECTORY YOU WANTED TO BE SAVE>"
+}
+```
+
 
 ## Initial Setup
 
