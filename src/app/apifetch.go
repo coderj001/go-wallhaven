@@ -13,9 +13,9 @@ func FetchAPI(url string) (src.SearchList, error) {
 	if err != nil {
 		return src.SearchList{
 				Data: []src.ImageInfo{},
-				Meta: src.MetaStruct{}},
+				Meta: src.MetaStruct{},
+			},
 			fmt.Errorf("error making HTTP request: %w", err)
-
 	}
 	defer resp.Body.Close()
 
@@ -25,9 +25,9 @@ func FetchAPI(url string) (src.SearchList, error) {
 	if err != nil {
 		return src.SearchList{
 				Data: []src.ImageInfo{},
-				Meta: src.MetaStruct{}},
+				Meta: src.MetaStruct{},
+			},
 			fmt.Errorf("error making HTTP request: %w", err)
-
 	}
 
 	return searchList, nil

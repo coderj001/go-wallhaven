@@ -1,5 +1,5 @@
 //nolint:tagliatelle,stylecheck
-//This line is ignoring lint checks because it is necessary for my use case.
+// This line is ignoring lint checks because it is necessary for my use case.
 
 package src
 
@@ -97,7 +97,7 @@ func init() {
 		dir    string
 	)
 	if err := godotenv.Load(); err == nil {
-		fmt.Println("Using config file: .env")
+		log.Println("Using config file: .env")
 		apikey = os.Getenv("API_KEY")
 		dir = os.Getenv("DIR")
 	} else {
