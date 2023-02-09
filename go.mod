@@ -1,4 +1,4 @@
-module github.com/coderj001/go-wallheven
+module github.com/coderj001/go-wallhaven
 
 go 1.18
 

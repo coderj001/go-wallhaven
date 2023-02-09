@@ -2,8 +2,8 @@
 #       https://github.com/notsatan/go-template
 
 cookiecutter_inputs:
-  project_name: "go-wallheven"
-  go_module_path: "github.com/coderj001/go-wallheven"
+  project_name: "go-wallhaven"
+  go_module_path: "github.com/coderj001/go-wallhaven"
   license_owner: "example"
   base_branch: "main"
   contact_email: "rajughorai41410@gmail.com"

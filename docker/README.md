@@ -1,7 +1,7 @@
 ## Docker
 
 This section guides you on how to use the [Makefile][makefile] to create (and remove)
-a docker containers for *go-wallheven*!
+a docker containers for *go-wallhaven*!
 
 > **Note:** This section assumes you've already installed [`docker`](https://www.docker.com)
 on your end, and know how to use it!
@@ -19,13 +19,13 @@ You can modify the name and version for the image to be created using the variab
 `IMAGE` and `VERSION`. The above command is equivalent to;
 
 ```bash
-make docker-gen IMAGE=go-wallheven VERSION=latest
+make docker-gen IMAGE=go-wallhaven VERSION=latest
 ```
 
 By default, the values for these environment variables are; <br>
 
 ```bash
-IMAGE := go-wallheven
+IMAGE := go-wallhaven
 VERSION := latest
 ```
 
@@ -42,7 +42,7 @@ make docker-gen IMAGE=<some_name> VERSION=<version_number>
 Once you've created a docker container, to run the container, use
 
 ```bash
-docker run go-wallheven
+docker run go-wallhaven
 ```
 
 ## Cleaning a docker image
@@ -62,13 +62,13 @@ make clean-docker IMAGE=<name> VERSION=<specific_version>
 Running a simple `make clean-docker` is the same as
 
 ```bash
-make clean-docker IMAGE=go-wallheven VERSION=latest
+make clean-docker IMAGE=go-wallhaven VERSION=latest
 ```
 
 
 ## Debug Images
 
-The [dockerfile](./Dockerfile) for *go-wallheven* uses
+The [dockerfile](./Dockerfile) for *go-wallhaven* uses
 [multistage builds][multistage] to generate light-weight docker images.
 
 Images generated using the `make docker-gen` command use [`scratch`][scratch_image] as
@@ -94,7 +94,7 @@ Similar to `docker-gen`, you can modify the name/version for the final image usi
 environment variables `IMAGE` and `VERSION`. The previous command is the same as
 
 ```bash
-make docker-debug IMAGE=go-wallheven-debug VERSION=latest
+make docker-debug IMAGE=go-wallhaven-debug VERSION=latest
 ```
 
 > P.S. Notice that for the sake of clarity, debug images will **always** have their
@@ -103,13 +103,13 @@ make docker-debug IMAGE=go-wallheven-debug VERSION=latest
 You can run the image generated as
 
 ```bash
-docker run go-wallheven-debug
+docker run go-wallhaven-debug
 ```
 
 You can run a debug image, and directly `shell` into it with
 
 ```bash
-docker run --rm -it go-wallheven-debug bash
+docker run --rm -it go-wallhaven-debug bash
 ```
 
 ### Cleaning debug images
@@ -119,7 +119,7 @@ you'll have to manually target the debug image using it's name (and version - ne
 if the version isn't `latest`).
 
 ```bash
-make clean-docker IMAGE=go-wallheven-debug VERSION=latest
+make clean-docker IMAGE=go-wallhaven-debug VERSION=latest
 ```
 
 Additionally, to ensure faster build times, the debug image explicitly caches previous

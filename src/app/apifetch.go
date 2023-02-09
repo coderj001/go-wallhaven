@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/coderj001/go-wallheven/src"
+	"github.com/coderj001/go-wallhaven/src"
 )
 
 func FetchAPI(url string) (src.SearchList, error) {

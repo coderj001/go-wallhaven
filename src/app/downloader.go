@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/coderj001/go-wallheven/src"
+	"github.com/coderj001/go-wallhaven/src"
 )
 
 func Downloader(searchList *src.SearchList, dir string) {

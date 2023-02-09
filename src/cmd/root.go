@@ -6,7 +6,7 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/coderj001/go-wallheven/src/app"
+	"github.com/coderj001/go-wallhaven/src/app"
 )
 
 var (

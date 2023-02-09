@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/url"
 
-	"github.com/coderj001/go-wallheven/src"
+	"github.com/coderj001/go-wallhaven/src"
 )
 
 type error interface {

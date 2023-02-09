@@ -111,7 +111,7 @@ linters-settings:
     sections:
       - standard # standard packages
       - default # all other imports that do not fall in any group
-      - prefix(github.com/coderj001/go-wallheven) # internal imports from `go-wallheven`
+      - prefix(github.com/coderj001/go-wallhaven) # internal imports from `go-wallhaven`
     section-separators:
       - newLine
 
@@ -233,7 +233,7 @@ linters-settings:
   goimports:
     # put imports beginning with prefix after 3rd-party packages;
     # it's a comma-separated list of prefixes
-    local-prefixes: github.com/coderj001/go-wallheven
+    local-prefixes: github.com/coderj001/go-wallhaven
 
   golint:
     # minimal confidence for issues, default is 0.8

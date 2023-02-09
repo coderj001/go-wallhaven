@@ -5,7 +5,7 @@
 # printed in the help command
 
 # Name of the current directory
-PROJECTNAME="go-wallheven"
+PROJECTNAME="go-wallhaven"
 
 # List of all Go-files to be processed
 GOFILES=$(wildcard *.go)
@@ -40,7 +40,7 @@ help: Makefile
 
 # Will install missing dependencies
 .PHONY: install
-## `install`: Fetch dependencies needed to run `go-wallheven`
+## `install`: Fetch dependencies needed to run `go-wallhaven`
 install:
 	echo "  >  Getting dependencies..."
 	go get -v $(get)
@@ -94,14 +94,14 @@ test-suite: lint test
 
 .PHONY: run
 ## :
-## `run`: Run `go-wallheven` in production mode
+## `run`: Run `go-wallhaven` in production mode
 run: export production_mode=production
 run: export __BUILD_MODE__=production
 run:
 	go run main.go $(q)
 
 .PHONY: run-debug
-## `run-debug`: Run `go-wallheven` in debug mode
+## `run-debug`: Run `go-wallhaven` in debug mode
 run-debug: export debug_mode=debug
 run-debug: export __BUILD_MODE__=debug
 run-debug:
@@ -110,7 +110,7 @@ run-debug:
 
 .PHONY: docker-gen
 ## :
-## `docker-gen`: Create a production docker image for `go-wallheven`
+## `docker-gen`: Create a production docker image for `go-wallhaven`
 docker-gen:
 	echo "Building docker image \`$(IMAGE):$(VERSION)\`..."
 	docker build --rm \
@@ -121,7 +121,7 @@ docker-gen:
 
 
 .PHONY: docker-debug
-## `docker-debug`: Create debug-friendly docker images for `go-wallheven`
+## `docker-debug`: Create debug-friendly docker images for `go-wallhaven`
 docker-debug:
 	echo "Building docker image \`$(IMAGE):$(VERSION)\`..."
 	docker build --rm=false \
