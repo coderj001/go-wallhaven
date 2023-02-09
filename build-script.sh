@@ -93,41 +93,41 @@ done
 echo -e ": Done"
 echo -ne "Archiving Binaries"
 
-cd "${bin_path}" || exit # Exit if `cd` fails
+# cd "${bin_path}" || exit # Exit if `cd` fails
 
-# Zip the windows executables
-if ! command -v zip >/dev/null; then
-  echo -e "\tZip not found, unable to generate archives for Windows executables"
-else
+# # Zip the windows executables
+# if ! command -v zip >/dev/null; then
+#   echo -e "\tZip not found, unable to generate archives for Windows executables"
+# else
 
-  # Iterating through each executable file - to generate individual `.zip` files
-  for file in "${file_name}"**".exe"; do
-    zip_name="${file//.exe/}" # form name of the zip file - remove `.exe`
+#   # Iterating through each executable file - to generate individual `.zip` files
+#   for file in "${file_name}"**".exe"; do
+#     zip_name="${file//.exe/}" # form name of the zip file - remove `.exe`
 
-    # Create a zip container for the file, the `-m` flag deletes the original file
-    zip "${zip_name}.zip" "${file}" -q -m
-  done
-fi
+#     # Create a zip container for the file, the `-m` flag deletes the original file
+#     zip "${zip_name}.zip" "${file}" -q -m
+#   done
+# fi
 
-# Run GZip on Linux/Mac binaries
-if ! command -v gzip >/dev/null; then
-  echo -e "\tGZip not found, unable to generate archives"
-else
-  for file in "${file_name}"**; do
-    if [[ "${file}" == "${file_name}"**".zip" ]]; then
-      # Skip iteration over zip files
-      continue
-    fi
+# # Run GZip on Linux/Mac binaries
+# if ! command -v gzip >/dev/null; then
+#   echo -e "\tGZip not found, unable to generate archives"
+# else
+#   for file in "${file_name}"**; do
+#     if [[ "${file}" == "${file_name}"**".zip" ]]; then
+#       # Skip iteration over zip files
+#       continue
+#     fi
 
-    gzip "${file}" -q
-  done
-fi
+#     gzip "${file}" -q
+#   done
+# fi
 
-# Add these checksums to the text file as well
-echo "" >>"${checksums}" # append new line
-for file in "${file_name}"**; do
-  sha256sum "$file" >>"${checksums}"
-done
+# # Add these checksums to the text file as well
+# echo "" >>"${checksums}" # append new line
+# for file in "${file_name}"**; do
+#   sha256sum "$file" >>"${checksums}"
+# done
 
-echo -e ": Done"
-echo -e "\nExecution completed successfully \nBinaries stored in: \"${bin_path}\" \n"
+# echo -e ": Done"
+# echo -e "\nExecution completed successfully \nBinaries stored in: \"${bin_path}\" \n"
