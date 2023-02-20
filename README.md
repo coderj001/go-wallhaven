@@ -311,3 +311,10 @@ for repositories. [Dependabot][dependabot-link] will implicitly create the
 
 The remaining labels can be created as needed!
 <br>
+
+## TODO:
+1. Limit the number of go worker should be user input
+2. Page input should be a range of pages (need to rewrite apifech function & others)
+3. Resolution shlould be fzf style multi-select (will try to apply on other fields)
+: 
+: 

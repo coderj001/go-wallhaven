@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -27,6 +28,10 @@ var rootCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		url := app.GetFullURL(page, categories, purity, sorting, colors, query)
 		searchList, _ := app.FetchAPI(url)
+		if len(searchList.Data) <= 0 {
+			log.Panicln("Unable to fetch data form api url: ", url)
+			os.Exit(1)
+		}
 		app.Downloader(&searchList, dir)
 	},
 }

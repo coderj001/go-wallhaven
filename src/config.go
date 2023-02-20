@@ -104,8 +104,7 @@ func init() {
 		viper.SetConfigFile(fmt.Sprintf("%s/.go-wallhaven", os.Getenv("HOME")))
 		viper.SetConfigType("json")
 		if err := viper.ReadInConfig(); err != nil {
-			log.Fatalf("Error reading config file, %s", err)
-			os.Exit(1)
+			log.Printf("Error reading config file, %s\n", err)
 		}
 		apikey = viper.GetString("API_KEY")
 		dir = viper.GetString("DIR")
