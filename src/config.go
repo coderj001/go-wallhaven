@@ -13,9 +13,10 @@ import (
 )
 
 type Config struct {
-	APIURL string
-	APIKEY string
-	DIR    string
+	APIURL   string
+	APIKEY   string
+	DIR      string
+	USERNAME string
 }
 
 // Base Config
@@ -93,13 +94,15 @@ type SearchList struct {
 
 func init() {
 	var (
-		apikey string
-		dir    string
+		apikey   string
+		dir      string
+		username string
 	)
 	if err := godotenv.Load(); err == nil {
 		log.Println("Using config file: .env")
 		apikey = os.Getenv("API_KEY")
 		dir = os.Getenv("DIR")
+		username = os.Getenv("USER_NAME")
 	} else {
 		viper.SetConfigFile(fmt.Sprintf("%s/.go-wallhaven", os.Getenv("HOME")))
 		viper.SetConfigType("json")
@@ -108,10 +111,12 @@ func init() {
 		}
 		apikey = viper.GetString("API_KEY")
 		dir = viper.GetString("DIR")
+		username = viper.GetString("USER_NAME")
 	}
 
 	BASE_CONFIG.APIURL = "https://wallhaven.cc/api/v1/search"
 	BASE_CONFIG.APIKEY = apikey
+	BASE_CONFIG.USERNAME = username
 	if dir == "" {
 		BASE_CONFIG.DIR = "./tmp"
 	} else {

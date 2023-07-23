@@ -19,7 +19,8 @@ If you have api key, it free and will suggest to create a free account, create a
 ```json
 {
   "API_KEY" : "<API_KEY>",
-  "DIR" : "<DIRECTORY YOU WANTED TO BE SAVE>"
+  "DIR" : "<DIRECTORY YOU WANTED TO BE SAVE>",
+  "USER_NAME" : "<USER_NAME>"
 }
 ```
 
