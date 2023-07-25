@@ -4,6 +4,7 @@
 package src
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -132,6 +133,14 @@ func (c Config) getAPIKey() string {
 		url = c.APIURL + "?"
 	}
 	return url
+}
+
+func (c Config) getUserName() (string, error) {
+	if c.USERNAME != "" {
+		return c.USERNAME, nil
+	} else {
+		return "", errors.New("Username not found")
+	}
 }
 
 func (c Config) GetURL(query string) string {
