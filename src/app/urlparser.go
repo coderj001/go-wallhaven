@@ -77,7 +77,6 @@ func GetFullURL(
 	page int,
 	categories, purity, sorting, color, query string,
 ) string {
-
 	params := Param{
 		Page:        page,
 		CTage:       src.CTAGS[categories],

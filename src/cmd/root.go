@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/spf13/cobra"
 
@@ -37,6 +38,16 @@ var rootCmd = &cobra.Command{
 }
 
 func Execute() {
+	rootCmd.AddCommand(&cobra.Command{
+		Use:   "print [string to print]",
+		Short: "Print anything to the screen",
+		Long:  `print is for printing anything back to the screen.`,
+		Args:  cobra.MinimumNArgs(1),
+		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Println("Print: ", strings.Join(args, " "))
+		},
+	})
+
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Fprintf(
 			os.Stderr,
@@ -52,12 +63,7 @@ func GetRoot() *cobra.Command {
 }
 
 func init() {
-	GetRoot().Flags().IntVarP(
-		&page,
-		"page",
-		"n",
-		1,
-		"Total Numbers Of Pages")
+	GetRoot().Flags().IntVarP(&page, "page", "n", 1, "Total Numbers Of Pages")
 	GetRoot().Flags().StringVarP(
 		&categories,
 		"categories",
@@ -94,31 +100,16 @@ func init() {
 		"relevance",
 		`
 		Sorting Filter:
-		relevance    - For sorting the results based on relevance to the search query
-		random       - For displaying random wallpapers
-		date_added   - For sorting the results based on date added
-		favorites    - For sorting the results based on number of favorites
-		views        - For sorting the results based on number of views
-		toplist      - For sorting the results based on toplist
-		hot          - For sorting the results based on hotness
+		relevance  - For sorting the results based on relevance to the search query
+		random     - For displaying random wallpapers
+		date_added - For sorting the results based on date added
+		favorites  - For sorting the results based on number of favorites
+		views      - For sorting the results based on number of views
+		toplist    - For sorting the results based on toplist
+		hot        - For sorting the results based on hotness
 
 	`)
-	GetRoot().Flags().StringVarP(
-		&colors,
-		"colors",
-		"c",
-		"",
-		`Select Color Hex Code eg. 663399`)
-	GetRoot().Flags().StringVarP(
-		&query,
-		"query",
-		"q",
-		"",
-		`Search Image For Query eg. Dark Knight`)
-	GetRoot().Flags().StringVarP(
-		&dir,
-		"dir",
-		"d",
-		"",
-		`Path to the directory`)
+	GetRoot().Flags().StringVarP(&colors, "colors", "c", "", `Select Color Hex Code eg. 663399`)
+	GetRoot().Flags().StringVarP(&query, "query", "q", "", `Search Image For Query eg. Dark Knight`)
+	GetRoot().Flags().StringVarP(&dir, "dir", "d", "", `Path to the directory`)
 }
